@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Korean Characters</title>
+    <style>
+      body {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+    <script>
+      // random Korean characters
+      const koreanCharacters = [
+        "ㄱ",
+        "ㄴ",
+        "ㄷ",
+        "ㄹ",
+        "ㅁ",
+        "ㅂ",
+        "ㅅ",
+        "ㅇ",
+        "ㅈ",
+        "ㅊ",
+        "ㅋ",
+        "ㅌ",
+        "ㅍ",
+        "ㅎ",
+      ];
+
+      // randomize characters
+      const randomCharacters = () => {
+        let counter = 0;
+        let randomString = "";
+        while (counter < 20) {
+          randomString +=
+            koreanCharacters[Math.floor(Math.random() * koreanCharacters.length)];
+          counter++;
+        }
+        return randomString;
+      };
+
+      // React App
+      const App = () => {
+        return (
+          <div style={{ color: "green" }}>{randomCharacters()}</div>
+        );
+      };
+
+      // Render the React App
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

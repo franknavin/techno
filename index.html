@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Korean Characters</title>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+      body {
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const characters = ["가", "나", "다", "라", "마", "바", "사", "아", "자"];
+      class RandomKoreanCharacters extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            characters: [],
+          };
+        }
+        componentDidMount() {
+          this.addCharacters();
+        }
+
+        addCharacters() {
+          const randomCharacter = characters[
+            Math.floor(Math.random() * characters.length)
+          ];
+          this.setState({
+            characters: [...this.state.characters, randomCharacter],
+          });
+          setTimeout(() => {
+            this.addCharacters();
+          }, 10);
+        }
+
+        render() {
+          return (
+            <div>
+              {this.state.characters.map((character, index) => (
+                <div
+                  key={index}
+                  style={{
+                    position: "absolute",
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    color: "#00ff00",
+                    transition: "all 1s",
+                  }}
+                >
+                  {character}
+                </div>
+              ))}
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<RandomKoreanCharacters />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
